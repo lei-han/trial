@@ -9,9 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends ActionBarActivity {
-	
-	public static final String EXTRA_MSG = "com.example,myfirstapp.MESSAGE";
 
+	public static final String EXTRA_MSG = "com.example,myfirstapp.MESSAGE";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +30,22 @@ public class MainActivity extends ActionBarActivity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.action_search:
+			//TODO: openSearch();
 			return true;
+		case R.id.action_settings:
+			//TODO: openSettings();
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+
 	}
-	
+
 	public void sendMsg(View view) {
-		Intent intent = new Intent(this,DisplayMessageActivity.class);
+		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		EditText txt = (EditText) this.findViewById(R.id.edit_message);
 		String msg = txt.getText().toString();
 		intent.putExtra(EXTRA_MSG, msg);
